@@ -56,6 +56,18 @@ main{max-width:1180px;margin:auto;padding:8px 16px 40px}
 @media (max-width:640px){.bar input{width:100%}.dhead h2{font-size:20px}}
 .hidden{display:none!important}
 .empty{text-align:center;color:var(--muted);padding:40px 0}
+.viewer{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;grid-template-rows:auto 1fr}
+.vbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 16px;background:var(--navy);border-bottom:3px solid var(--gold);color:#fff}
+.vbar .vt{flex:1;min-width:160px;font-weight:700;font-size:16px;line-height:1.4}
+.vbar .vbtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:14px;font-weight:500;padding:7px 14px;border-radius:9px;cursor:pointer;text-decoration:none;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff}
+.vbar .vbtn.home{background:var(--gold);border-color:var(--gold);color:#14243b;font-weight:700}
+.vbar .vbtn:hover{filter:brightness(1.1)}
+.vbar .vbtn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vbody{min-height:0;display:grid;background:var(--bg)}
+.vbody iframe{width:100%;height:100%;border:0;background:#fff}
+.vbody video{width:100%;height:100%;background:#000}
+.vload{position:absolute;inset:auto 0 0 0;text-align:center;color:var(--muted);font-size:13px;padding:6px}
+@media (max-width:640px){.vbar .vbtn span{display:none}.vbar .vt{font-size:14px}}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 16px;border-top:1px solid var(--line)}
 </style></head><body>
 <header class="hero"><p class="org">المملكة العربية السعودية · وزارة التعليم · الإدارة العامة للتعليم بمنطقة مكة المكرمة</p>
@@ -240,6 +252,15 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 16px;bor
     <p class="desc">لوحة صفية على منصة بادلت لنشر الواجبات والمحتوى ومشاركة الطلاب.</p>
     <div class="actions"><a class="btn" href="https://padlet.com/sallem3777lfd/padlet-s023fcuf7l8yz9ypx4yk" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> فتح لوحة بادلت</a></div></div></article>
 </div></section><p class="empty hidden" id="empty">لا توجد نتائج مطابقة.</p></main>
+<div class="viewer hidden" id="viewer" role="dialog" aria-modal="true" aria-labelledby="vt">
+  <div class="vbar">
+    <button class="vbtn home" id="vhome" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>العودة للرئيسية</button>
+    <div class="vt" id="vt"></div>
+    <a class="vbtn" id="vdl" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg><span>تحميل</span></a>
+    <a class="vbtn" id="vnew" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg><span>فتح في نافذة جديدة</span></a>
+  </div>
+  <div class="vbody" id="vbody"></div>
+</div>
 <footer>مدير المدرسة: خماش حلسان القرني · ملف مساند لملف الشواهد، مرتب وفق مجالات التقويم المدرسي</footer>
 <script>
 // Arabic-aware search: ignores diacritics, hamza forms, taa marbuta, the "ال" prefix and plural endings
@@ -252,4 +273,49 @@ q.addEventListener('input',()=>{const v=q.value.trim();let any=false;
 cards.forEach(c=>{const m=!v||matches(c.dataset.q+' '+c.querySelector('h3').textContent,v);c.classList.toggle('hidden',!m);any=any||m});
 secs.forEach(s=>s.classList.toggle('hidden',!s.querySelector('.card:not(.hidden)')));
 document.getElementById('empty').classList.toggle('hidden',any)});
+
+// In-page viewer: files open inside the page; the phone's back button and "العودة للرئيسية" both return home.
+(function(){
+  const V = document.getElementById('viewer'), body = document.getElementById('vbody');
+  function target(a){
+    const h = a.getAttribute('href') || '';
+    let m = h.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
+    if (m) return {src:'https://drive.google.com/file/d/'+m[1]+'/preview', dl:'https://drive.google.com/uc?export=download&id='+m[1], open:'https://drive.google.com/file/d/'+m[1]+'/view'};
+    m = h.match(/drive\.google\.com\/drive\/folders\/([\w-]+)/);
+    if (m) return {src:'https://drive.google.com/embeddedfolderview?id='+m[1]+'#grid', dl:null, open:h};
+    if (/padlet\.com\//.test(h)) return {src:h, dl:null, open:h};
+    if (/\.mp4$/i.test(h)) return {video:h, dl:h, open:h};
+    return null;
+  }
+  function title(a){
+    const card = a.closest('.card');
+    const t = card ? card.querySelector('h3').textContent.trim() : '';
+    const label = a.textContent.trim();
+    if (!card) return label;
+    return a.closest('.actions') && card.querySelectorAll('.actions a').length > 1 && !/عرض الملف|الفيديو|نافذة/.test(label) ? t + ' – ' + label : t;
+  }
+  function show(st, push){
+    document.getElementById('vt').textContent = st.title;
+    const dl = document.getElementById('vdl'); dl.classList.toggle('hidden', !st.dl); if (st.dl) dl.href = st.dl;
+    document.getElementById('vnew').href = st.open;
+    body.innerHTML = '';
+    if (st.video){ const v = document.createElement('video'); v.src = st.video; v.controls = true; v.playsInline = true; v.autoplay = true; body.appendChild(v); }
+    else { const f = document.createElement('iframe'); f.src = st.src; f.title = st.title; f.allow = 'autoplay; fullscreen'; f.setAttribute('allowfullscreen', ''); body.appendChild(f); }
+    V.classList.remove('hidden'); document.body.style.overflow = 'hidden';
+    if (push) history.pushState({viewer: st}, '', '#عرض');
+    document.getElementById('vhome').focus();
+  }
+  function close(){ V.classList.add('hidden'); body.innerHTML = ''; document.body.style.overflow = ''; }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a || V.contains(a) || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    const t = target(a); if (!t) return;
+    e.preventDefault();
+    show(Object.assign({title: title(a)}, t), true);
+  });
+  document.getElementById('vhome').addEventListener('click', () => { if (history.state && history.state.viewer) history.back(); else close(); });
+  addEventListener('popstate', e => { if (e.state && e.state.viewer) show(e.state.viewer, false); else close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !V.classList.contains('hidden')) document.getElementById('vhome').click(); });
+  if (location.hash === '#' + encodeURIComponent('عرض') || location.hash === '#عرض') history.replaceState(null, '', location.pathname);
+})();
 </script></body></html>
