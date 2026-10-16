@@ -1,0 +1,131 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تقرير منصة مدرستي – متوسطة العز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Same tokens as the records page; one teal series per chart, gold for the 90% target line. */
+:root{--bg:#f7f4ec;--surface:#fff;--ink:#14243b;--muted:#6b7280;--line:#e6dfcf;--navy:#122b4d;--teal:#0d7373;--teal-soft:#cfe3e3;--gold:#a87f22;--chip:#eef4f4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1622;--surface:#16212f;--ink:#e8edf3;--muted:#9aa6b4;--line:#253244;--navy:#0b1a2e;--teal:#3fb3b3;--teal-soft:#1f3d45;--gold:#d9b25e;--chip:#1c2b3b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1622;--surface:#16212f;--ink:#e8edf3;--muted:#9aa6b4;--line:#253244;--navy:#0b1a2e;--teal:#3fb3b3;--teal-soft:#1f3d45;--gold:#d9b25e;--chip:#1c2b3b;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Tajawal,Tahoma,Arial,sans-serif;line-height:1.6;padding-inline:16px;padding-block:24px 48px}
+.wrap{max-width:1000px;margin:auto;display:grid;gap:22px}
+.wrap>*{min-width:0}
+header h1{margin:0;font-size:clamp(22px,4vw,30px);font-weight:800;text-wrap:balance}
+header p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.box h2{margin:0 0 4px;font-size:18px}
+.box .sub{margin:0 0 14px;color:var(--muted);font-size:13px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface)}
+.tile b{display:block;font-size:26px;font-weight:800;color:var(--teal);font-variant-numeric:tabular-nums;line-height:1.2}
+.tile span{font-size:13px;color:var(--muted)}
+.chart{position:relative}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chart text{fill:var(--muted);font-family:inherit;font-size:12px}
+.chart .val{fill:var(--ink);font-weight:700}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .bar{fill:var(--teal)}
+.chart .bar.low{fill:var(--teal-soft)}
+.chart .target{stroke:var(--gold);stroke-width:2;stroke-dasharray:5 4}
+.chart .targetlbl{fill:var(--gold);font-weight:700}
+.chart .hit{fill:transparent;cursor:default}
+.tip{position:absolute;pointer-events:none;background:var(--navy);color:#fff;font-size:13px;padding:6px 10px;border-radius:8px;white-space:nowrap;transform:translate(50%,-110%)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-inline-end:5px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start}
+th{font-size:12.5px;color:var(--muted);font-weight:500}
+td.n,th.n{text-align:center}
+tr.tot td{font-weight:800;border-top:2px solid var(--line)}
+details{margin-top:10px;font-size:13px}
+summary{cursor:pointer;color:var(--teal)}
+footer{color:var(--muted);font-size:12.5px;text-align:center}
+@media (max-width:560px){th,td{padding:7px 6px;font-size:13px}}
+</style></head><body><div class="wrap">
+<header>
+  <h1>تقرير شواهد منصة مدرستي – الفصل الأول 1448هـ</h1>
+  <p>متوسطة العز بن عبدالسلام بالعرضيات · من 23 أغسطس إلى 15 أكتوبر 2026 (8 أسابيع) · 29 معلمًا، 249 طالبًا، 9 فصول · المصدر: منصة مدرستي (حساب قائد المدرسة). الأرقام على مستوى المدرسة، دون أسماء معلمين أو طلاب.</p>
+</header>
+
+<section class="box"><h2>الملخص</h2><p class="sub">ما أنتجه المعلمون على المنصة خلال الفصل</p><div class="tiles" id="tiles"></div></section>
+
+<section class="box">
+  <h2>نسبة تحضير الدروس أسبوعيًّا</h2>
+  <p class="sub">الحصص التي رُبط بها درس على المنصة قبل موعدها، من كل حصص جداول المعلمين. تجاوزت 90% في 4 أسابيع، وبلغت 98.4% في الأسبوع السابع. انخفاض الأسبوع الخامس يقع في يومي 23 و24 سبتمبر (اليوم الوطني).</p>
+  <div class="chart" id="weekly"></div>
+  <div class="legend"><span><i style="background:var(--teal)"></i>نسبة التحضير في الأسبوع</span><span><i style="background:var(--gold)"></i>خط 90%</span></div>
+  <details><summary>عرض الأرقام اليومية</summary><div class="tbl"><table id="daily"></table></div></details>
+</section>
+
+<section class="box"><h2>النشاط الشهري على المنصة</h2><p class="sub">ما أنشأه المعلمون في كل شهر (أكتوبر حتى 15 منه)</p><div class="tbl"><table id="months"></table></div></section>
+
+<section class="box"><h2>حسب المادة</h2><p class="sub">مرتبة حسب مجموع ما أُنشئ في المادة خلال الفصل. 4 اختبارات أُنشئت دون ربطها بدرس، فلا تظهر في هذا الجدول ولا في جدول الصفوف.</p><div class="tbl"><table id="subjects"></table></div></section>
+
+<section class="box"><h2>حسب الصف</h2><div class="tbl"><table id="grades"></table></div></section>
+
+<footer>أُعد من تقارير منصة مدرستي: الواجبات، والاختبارات، والأنشطة والمهام، والإثراءات خلال فترة، والإعلانات، ونسبة التحضير.</footer>
+</div>
+<script>
+const D = {"subjects": {"الرياضيات": {"hw": 73, "tests": 9, "act": 361, "enr": 210}, "اللغة العربية": {"hw": 49, "tests": 35, "act": 254, "enr": 236}, "اللغة الإنجليزية": {"hw": 101, "tests": 4, "act": 194, "enr": 87}, "العلوم": {"hw": 66, "tests": 34, "act": 200, "enr": 68}, "الدراسات الاجتماعية": {"hw": 118, "tests": 5, "act": 163, "enr": 61}, "دراسات إسلامية": {"hw": 36, "tests": 10, "act": 205, "enr": 0}, "التربية البدنية والدفاع عن النفس": {"hw": 58, "tests": 0, "act": 109, "enr": 74}, "المهارات الرقمية": {"hw": 52, "tests": 36, "act": 118, "enr": 23}, "القرآن الكريم والدراسات الإسلامية": {"hw": 4, "tests": 0, "act": 37, "enr": 177}, "التربية الفنية": {"hw": 40, "tests": 0, "act": 104, "enr": 21}, "المهارات الحياتية والأسرية": {"hw": 14, "tests": 14, "act": 60, "enr": 57}, "التفكير الناقد": {"hw": 0, "tests": 0, "act": 39, "enr": 12}}, "grades": {"الصف الأول المتوسط": {"hw": 198, "tests": 39, "act": 636, "enr": 311}, "الصف الثاني المتوسط": {"hw": 277, "tests": 75, "act": 582, "enr": 426}, "الصف الثالث المتوسط": {"hw": 136, "tests": 33, "act": 626, "enr": 289}}, "months": {"hw": [27, 371, 213], "tests": [6, 76, 69], "act": [107, 1096, 641]}, "hw_teachers": 21, "tests_teachers": 10, "act_teachers": 26, "ads": {"أغسطس|مدرسة": 10, "أكتوبر|فصل": 34, "سبتمبر|فصل": 57}, "weeks": ["23–27 أغسطس", "30 أغسطس–3 سبتمبر", "6–10 سبتمبر", "13–17 سبتمبر", "20–24 سبتمبر", "27 سبتمبر–1 أكتوبر", "4–8 أكتوبر", "11–15 أكتوبر"], "weekly": [5.9, 71.2, 86.3, 90.5, 69.6, 96.1, 98.4, 90.8], "daily": [["23 أغسطس 2026", 56, 3], ["24 أغسطس 2026", 55, 3], ["25 أغسطس 2026", 56, 4], ["26 أغسطس 2026", 56, 3], ["27 أغسطس 2026", 50, 3], ["30 أغسطس 2026", 63, 51], ["31 أغسطس 2026", 63, 44], ["01 سبتمبر 2026", 63, 44], ["02 سبتمبر 2026", 63, 45], ["03 سبتمبر 2026", 54, 34], ["06 سبتمبر 2026", 63, 54], ["07 سبتمبر 2026", 63, 53], ["08 سبتمبر 2026", 63, 54], ["09 سبتمبر 2026", 63, 57], ["10 سبتمبر 2026", 54, 46], ["13 سبتمبر 2026", 63, 63], ["14 سبتمبر 2026", 63, 58], ["15 سبتمبر 2026", 63, 60], ["16 سبتمبر 2026", 63, 58], ["17 سبتمبر 2026", 54, 38], ["20 سبتمبر 2026", 63, 59], ["21 سبتمبر 2026", 63, 54], ["22 سبتمبر 2026", 63, 52], ["23 سبتمبر 2026", 63, 28], ["24 سبتمبر 2026", 54, 20], ["27 سبتمبر 2026", 63, 62], ["28 سبتمبر 2026", 63, 61], ["29 سبتمبر 2026", 63, 60], ["30 سبتمبر 2026", 63, 59], ["01 أكتوبر 2026", 54, 52], ["04 أكتوبر 2026", 63, 61], ["05 أكتوبر 2026", 63, 60], ["06 أكتوبر 2026", 63, 63], ["07 أكتوبر 2026", 63, 63], ["08 أكتوبر 2026", 54, 54], ["11 أكتوبر 2026", 63, 61], ["12 أكتوبر 2026", 63, 59], ["13 أكتوبر 2026", 63, 56], ["14 أكتوبر 2026", 63, 56], ["15 أكتوبر 2026", 54, 46]], "weeklyAvg": 77.1, "enrTotal": 1026, "adsMonths": [10, 57, 34], "adsTotal": 101};
+const fmt = n => n.toLocaleString("en-US");
+const $ = id => document.getElementById(id);
+const sum = a => a.reduce((x, y) => x + y, 0);
+
+$("tiles").innerHTML = [
+  [D.weeklyAvg + "%", "نسبة تحضير الدروس للفصل"],
+  [fmt(sum(D.months.hw)), `واجبًا إلكترونيًا من ${D.hw_teachers} معلمًا`],
+  [fmt(sum(D.months.act)), `نشاطًا ومهمة صفية من ${D.act_teachers} معلمًا`],
+  [fmt(D.enrTotal), "إثراءً تعليميًّا"],
+  [fmt(sum(D.months.tests)), `اختبارًا إلكترونيًا من ${D.tests_teachers} معلمين`],
+  [fmt(D.adsTotal), "إعلانًا للمدرسة والفصول"],
+].map(([b, s]) => `<div class="tile"><b>${b}</b><span>${s}</span></div>`).join("");
+
+// weekly preparation bars (single series, one scale 0–100%)
+(function(){
+  const W = 760, H = 300, L = 44, R = 10, T = 26, B = 58, n = D.weekly.length;
+  const SHORT = ["23–27/8", "30/8–3/9", "6–10/9", "13–17/9", "20–24/9", "27/9–1/10", "4–8/10", "11–15/10"];
+  const bw = (W - L - R) / n, y = v => T + (H - T - B) * (1 - v / 100);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="نسبة تحضير الدروس في كل أسبوع">`;
+  for (const g of [0, 25, 50, 75, 100]) s += `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(g)}" y2="${y(g)}"/><text x="${L - 8}" y="${y(g) + 4}" text-anchor="end">${g}%</text>`;
+  D.weekly.forEach((v, i) => {
+    // RTL page: first week on the right
+    const x = W - R - (i + 1) * bw + bw * 0.18, w = bw * 0.64, h = Math.max(2, y(0) - y(v)), top = y(v);
+    const r = Math.min(4, w / 2, h);
+    s += `<path class="bar${v < 90 ? " low" : ""}" d="M${x},${y(0)} V${top + r} Q${x},${top} ${x + r},${top} H${x + w - r} Q${x + w},${top} ${x + w},${top + r} V${y(0)} Z"/>`;
+    s += `<text class="val" x="${x + w / 2}" y="${top - 6}" text-anchor="middle">${v}%</text>`;
+    s += `<text x="${x + w / 2}" y="${H - B + 18}" text-anchor="middle">الأسبوع ${i + 1}</text><text x="${x + w / 2}" y="${H - B + 34}" text-anchor="middle" direction="ltr" font-size="11">${SHORT[i]}</text>`;
+    s += `<rect class="hit" x="${W - R - (i + 1) * bw}" y="${T}" width="${bw}" height="${H - T - B}" data-i="${i}"/>`;
+  });
+  s += `<line class="target" x1="${L}" x2="${W - R}" y1="${y(90)}" y2="${y(90)}"/><text class="targetlbl" x="${L + 4}" y="${y(90) - 6}">90%</text></svg><div class="tip" hidden></div>`;
+  const el = $("weekly"); el.innerHTML = s;
+  const tip = el.querySelector(".tip"), svg = el.querySelector("svg");
+  el.querySelectorAll(".hit").forEach(h => {
+    h.addEventListener("mouseenter", () => {
+      const i = +h.dataset.i, bb = h.getBoundingClientRect(), cb = el.getBoundingClientRect();
+      tip.textContent = `الأسبوع ${i + 1} (${D.weeks[i]}): ${D.weekly[i]}%`;
+      tip.hidden = false; tip.style.right = (cb.right - bb.right + bb.width / 2) + "px"; tip.style.top = (bb.top - cb.top + (svg.getBoundingClientRect().height * (1 - D.weekly[i] / 100) * 0.75)) + "px";
+    });
+    h.addEventListener("mouseleave", () => tip.hidden = true);
+  });
+})();
+
+$("daily").innerHTML = `<thead><tr><th>اليوم</th><th class="n">حصص الجدول</th><th class="n">المحضّرة</th><th class="n">النسبة</th></tr></thead><tbody>` +
+  D.daily.map(([d, a, b]) => `<tr><td>${d}</td><td class="n">${a}</td><td class="n">${b}</td><td class="n">${Math.round(b / a * 1000) / 10}%</td></tr>`).join("") + "</tbody>";
+
+const M = ["أغسطس", "سبتمبر", "أكتوبر"];
+$("months").innerHTML = `<thead><tr><th></th>${M.map(m => `<th class="n">${m}</th>`).join("")}<th class="n">المجموع</th></tr></thead><tbody>` +
+  [["الواجبات", D.months.hw], ["الاختبارات", D.months.tests], ["الأنشطة والمهام", D.months.act], ["الإعلانات", D.adsMonths]]
+  .map(([l, v]) => `<tr><td>${l}</td>${v.map(x => `<td class="n">${fmt(x)}</td>`).join("")}<td class="n"><b>${fmt(sum(v))}</b></td></tr>`).join("") + "</tbody>";
+
+const rowsOf = (obj, first) => {
+  const ks = Object.keys(obj), t = {hw: 0, tests: 0, act: 0, enr: 0};
+  let h = `<thead><tr><th>${first}</th><th class="n">الواجبات</th><th class="n">الاختبارات</th><th class="n">الأنشطة والمهام</th><th class="n">الإثراءات</th></tr></thead><tbody>`;
+  for (const k of ks){ const v = obj[k]; for (const f in t) t[f] += v[f]; h += `<tr><td>${k}</td><td class="n">${fmt(v.hw)}</td><td class="n">${fmt(v.tests)}</td><td class="n">${fmt(v.act)}</td><td class="n">${fmt(v.enr)}</td></tr>`; }
+  return h + `<tr class="tot"><td>المجموع</td><td class="n">${fmt(t.hw)}</td><td class="n">${fmt(t.tests)}</td><td class="n">${fmt(t.act)}</td><td class="n">${fmt(t.enr)}</td></tr></tbody>`;
+};
+$("subjects").innerHTML = rowsOf(D.subjects, "المادة");
+$("grades").innerHTML = rowsOf(D.grades, "الصف");
+</script></body></html>

@@ -249,6 +249,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 16px;bor
     <div class="actions"><a class="btn" href="https://drive.google.com/file/d/1Yowo6YfZGBpdL8xVygqgIVBi0ROu5uGM/view" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> عرض الملف</a></div></div></article></div></section><section class="domain" id="d6"><header class="dhead"><span class="dnum">5</span>
 <div><p class="dsub">شواهد رقمية</p><h2>شواهد منصة مدرستي</h2></div><span class="dcount">الفصل الأول 1448هـ</span></header>
 <p class="mnote">أرقام مستخرجة من منصة مدرستي (حساب قائد المدرسة) للفترة من 23 أغسطس إلى 15 أكتوبر 2026، أي 8 أسابيع دراسية. المدرسة: 29 معلمًا، و249 طالبًا، و9 فصول. إعداد: أ. عائض السهيمي.</p>
+<p class="actions" style="margin:-4px 0 16px"><a class="btn" href="madrasati.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg> التقرير التفصيلي: التحضير الأسبوعي، والنشاط حسب المادة والصف</a></p>
 <div class="kpis">
 <article class="kpi card" data-q="تحضير الدروس نسبة التحضير متابعة منصة مدرستي شواهد رقمية">
   <div class="big">77.1<small>%</small></div><h3>تحضير الدروس على المنصة</h3><p class="det">1,861 حصة محضّرة من 2,415 حصة في جداول المعلمين. تصل إلى 86.1% بعد الأسبوع الأول، وتجاوزت 90% في 4 أسابيع من 8، وبلغت 98% في الأسبوع السابع.</p>
@@ -351,6 +352,7 @@ document.getElementById('empty').classList.toggle('hidden',any)});
     if (m) return {src:'https://drive.google.com/embeddedfolderview?id='+m[1]+'#grid', dl:null, open:h};
     if (/padlet\.com\//.test(h)) return {src:h, dl:null, open:h};
     if (/\.mp4$/i.test(h)) return {video:h, dl:h, open:h};
+    if (/^[\w-]+\.html$/i.test(h)) return {src:h, dl:null, open:h};
     return null;
   }
   function title(a){
