@@ -56,6 +56,19 @@ main{max-width:1180px;margin:auto;padding:8px 16px 40px}
 @media (max-width:640px){.bar input{width:100%}.dhead h2{font-size:20px}}
 .hidden{display:none!important}
 .empty{text-align:center;color:var(--muted);padding:40px 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow)}
+.kpi .big{font-size:30px;font-weight:800;color:var(--teal);line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .big small{font-size:15px;font-weight:700;color:var(--muted)}
+.kpi h3{font-size:15.5px;margin:0;line-height:1.45}
+.kpi .det{font-size:13px;color:var(--muted);margin:0}
+.kpi .code{display:inline-block;direction:ltr;font-size:11.5px;font-weight:700;background:var(--chip);color:var(--teal);border-radius:6px;padding:1px 7px;margin-inline-end:4px}
+.kpi .ind{margin:auto 0 0}
+.mnote{font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.7}
+.plan{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.plan h3{margin:0 0 4px;font-size:17px}
+.plan ol{margin:8px 0 0;padding-inline-start:22px;display:grid;gap:6px;font-size:14px}
+.plan b{color:var(--teal)}
 .viewer{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;grid-template-rows:auto 1fr}
 .vbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 16px;background:var(--navy);border-bottom:3px solid var(--gold);color:#fff}
 .vbar .vt{flex:1;min-width:160px;font-weight:700;font-size:16px;line-height:1.4}
@@ -74,7 +87,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 16px;bor
 <h1>ملفات وسجلات مدرسة العز بن عبدالسلام</h1>
 <p class="sub">متوسطة العز بن عبدالسلام بالعرضيات · العام الدراسي 1448هـ</p>
 <div class="stats"><div class="stat"><b>4</b><span>مجالات</span></div><div class="stat"><b>25</b><span>ملفاً وسجلاً</span></div><div class="stat"><b>1,130</b><span>صفحة</span></div></div><p class="folder"><a href="https://drive.google.com/drive/folders/1N76tDjTgsniIHjdVAJRY7pU931Dh0bcy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> المجلد الكامل على قوقل درايف</a></p></header>
-<div class="bar"><div class="in"><nav><a href="#d1">الإدارة المدرسية</a><a href="#d2">التعليم والتعلم</a><a href="#d3">نواتج التعلم</a><a href="#d4">البيئة المدرسية</a><a href="#d5">التكريمات والوسائط</a></nav><input id="q" type="search" placeholder="ابحث: البادلت، التكريم، الرخصة…" aria-label="بحث"></div></div>
+<div class="bar"><div class="in"><nav><a href="#d1">الإدارة المدرسية</a><a href="#d2">التعليم والتعلم</a><a href="#d3">نواتج التعلم</a><a href="#d4">البيئة المدرسية</a><a href="#d6">منصة مدرستي</a><a href="#d5">التكريمات والوسائط</a></nav><input id="q" type="search" placeholder="ابحث: البادلت، التكريم، الرخصة…" aria-label="بحث"></div></div>
 <main><section class="domain" id="d1"><header class="dhead"><span class="dnum">1</span>
 <div><p class="dsub">المجال الأول</p><h2>الإدارة المدرسية</h2></div><span class="dcount">11 ملفاً</span></header>
 <div class="grid"><article class="card" data-q="ميثاق مهنة التعليم ومدونة السلوك تلتزم المدرسة بأخلاقيات مهنة التعليم وقواعد السلوك الوظيفي، وتعزّزها لدى منسوبيها.">
@@ -233,7 +246,48 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 16px;bor
     <h3>مبادرة بقياسنا نرتقي بطلابنا – أدوات القياس</h3>
     <p class="ind"><b>المؤشر:</b> تقدّم المدرسة خدمات التوجيه والإرشاد المبنية على قياس احتياجات المتعلمين.</p>
     <p class="meta">9 صفحة</p>
-    <div class="actions"><a class="btn" href="https://drive.google.com/file/d/1Yowo6YfZGBpdL8xVygqgIVBi0ROu5uGM/view" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> عرض الملف</a></div></div></article></div></section><section class="domain" id="d5"><header class="dhead"><span class="dnum">5</span>
+    <div class="actions"><a class="btn" href="https://drive.google.com/file/d/1Yowo6YfZGBpdL8xVygqgIVBi0ROu5uGM/view" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> عرض الملف</a></div></div></article></div></section><section class="domain" id="d6"><header class="dhead"><span class="dnum">5</span>
+<div><p class="dsub">شواهد رقمية</p><h2>شواهد منصة مدرستي</h2></div><span class="dcount">الفصل الأول 1448هـ</span></header>
+<p class="mnote">أرقام مستخرجة من منصة مدرستي (حساب قائد المدرسة) للفترة من 23 أغسطس إلى 15 أكتوبر 2026، أي 8 أسابيع دراسية. المدرسة: 29 معلمًا، و249 طالبًا، و9 فصول. إعداد: أ. عائض السهيمي.</p>
+<div class="kpis">
+<article class="kpi card" data-q="تحضير الدروس نسبة التحضير متابعة منصة مدرستي شواهد رقمية">
+  <div class="big">77.1<small>%</small></div><h3>تحضير الدروس على المنصة</h3><p class="det">1,861 حصة محضّرة من 2,415 حصة في جداول المعلمين. تصل إلى 86.1% بعد الأسبوع الأول، وتجاوزت 90% في 4 أسابيع من 8، وبلغت 98% في الأسبوع السابع.</p>
+  <p class="ind"><span class="code">2-1-1-2</span><span class="code">1-1-1-2</span><b>المؤشر:</b> تدعم المدرسة تنفيذ المناهج بما يحقق نواتج التعلم المستهدفة.</p></article>
+<article class="kpi card" data-q="الواجبات واجبات إلكترونية منصة مدرستي شواهد رقمية">
+  <div class="big">611</div><h3>واجبًا إلكترونيًا</h3><p class="det">أنشأها 21 معلمًا خلال الفصل: 27 في أغسطس، و371 في سبتمبر، و213 حتى 15 أكتوبر.</p>
+  <p class="ind"><span class="code">2-1-1-4</span><b>المؤشر:</b> تفعّل المدرسة التقنية الرقمية؛ لدعم تعلم المتعلمين وتلبية احتياجاتهم.</p></article>
+<article class="kpi card" data-q="الأنشطة والمهام منصة مدرستي شواهد رقمية">
+  <div class="big">1,844</div><h3>نشاطًا ومهمة صفية</h3><p class="det">نشرها 26 معلمًا من 29 على المنصة.</p>
+  <p class="ind"><span class="code">2-1-1-3</span><b>المؤشر:</b> تنوّع المدرسة في استراتيجيات التعليم والتعلم؛ لتلبية احتياجات المتعلمين ودعم تعلمهم.</p></article>
+<article class="kpi card" data-q="الإثراءات إثراء منصة مدرستي شواهد رقمية">
+  <div class="big">1,026</div><h3>إثراءً تعليميًّا خلال الفصل</h3><p class="det">أضافها 26 معلمًا (1,145 إثراءً منذ إنشاء المقررات): فيديوهات وملفات وروابط إضافية للطلاب.</p>
+  <p class="ind"><span class="code">2-1-1-1</span><span class="code">2-1-1-4</span><b>المؤشر:</b> توفر المدرسة فرصًا متكافئة للتعلم تلبي احتياجات المتعلمين، ومنهم ذوو الإعاقة والموهوبون.</p></article>
+<article class="kpi card" data-q="الاختبارات الإلكترونية التقويم منصة مدرستي شواهد رقمية">
+  <div class="big">151</div><h3>اختبارًا إلكترونيًا</h3><p class="det">أنشأها 10 معلمين على المنصة، إلى جانب الاختبارات الورقية.</p>
+  <p class="ind"><span class="code">2-2-1-1</span><span class="code">2-2-1-2</span><b>المؤشر:</b> تطبق المدرسة أساليب وأدوات تقويم متنوعة؛ للكشف عن مستويات أداء المتعلمين المختلفة.</p></article>
+<article class="kpi card" data-q="الدروس المتزامنة غير المتزامنة الفصول الافتراضية التعلم الذاتي منصة مدرستي شواهد رقمية">
+  <div class="big">1,847</div><h3>درسًا على المنصة</h3><p class="det">229 درسًا متزامنًا (فصول افتراضية مباشرة) و1,618 درسًا غير متزامن يفتحه الطالب متى شاء.</p>
+  <p class="ind"><span class="code">2-1-1-4</span><span class="code">3-2-1-6</span><b>المؤشر:</b> تفعّل المدرسة التقنية الرقمية؛ لدعم تعلم المتعلمين وتلبية احتياجاتهم.</p></article>
+<article class="kpi card" data-q="الإعلانات التواصل منصة مدرستي شواهد رقمية">
+  <div class="big">101</div><h3>إعلان للمدرسة والفصول</h3><p class="det">10 إعلانات عامة للمدرسة و91 إعلانًا للفصول، نشرها 9 معلمين.</p>
+  <p class="ind"><span class="code">1-3-1-1</span><span class="code">1-3-1-2</span><b>المؤشر:</b> تعزز المدرسة بناء العلاقات الإيجابية والتعاون في المجتمع المدرسي.</p></article>
+<article class="kpi card" data-q="تحليل البيانات خطة التحسين التقويم الذاتي فجوات منصة مدرستي شواهد رقمية">
+  <div class="big">7</div><h3>أولويات تحسين مبنية على البيانات</h3><p class="det">حلّلت المدرسة 19 تقريرًا من المنصة، وحدّدت الفجوات وأهدافًا قابلة للقياس لنهاية الفصل الثاني، وتعيد القياس بالخطوات نفسها لإثبات الأثر.</p>
+  <p class="ind"><span class="code">1-4-1-3</span><span class="code">2-2-1-3</span><span class="code">1-4-1-4</span><b>المؤشر:</b> تحلل المدرسة نتائج التقويم، وتوظفها في تحسين عمليات التعليم والتعلم والتقويم.</p></article>
+</div>
+<div class="plan" data-q="خطة التحسين أهداف الفصل الثاني منصة مدرستي">
+  <h3>أهداف التحسين لنهاية الفصل الثاني 1448هـ (من تحليل بيانات المنصة)</h3>
+  <ol>
+    <li>رفع اطلاع الطلاب على الإثراءات إلى <b>نصف المقررات على الأقل</b>، بفتح إثراء واحد أسبوعيًّا داخل الحصة.</li>
+    <li>رفع إنجاز الاختبارات الإلكترونية إلى <b>30% في كل صف</b>، بتطبيق الاختبار القصير على المنصة داخل الحصة.</li>
+    <li>رفع عدد المعلمين المنشئين للاختبارات الإلكترونية من 10 إلى <b>20 معلمًا</b>.</li>
+    <li>تفعيل إشعارات أولياء الأمور في <b>كل الفصول</b>، مع لقاء تعريفي بحساب ولي الأمر.</li>
+    <li>رفع التقدم في المقررات الإلكترونية إلى <b>20% في كل فصل مسند</b>، بتشغيل وحدة منها في معمل الحاسب.</li>
+    <li>تحضير <b>90% في كل أسبوع</b>، وألّا يقل أي معلم عن 80%.</li>
+    <li>مطابقة رصد الغياب على المنصة مع نظام نور شهريًّا، ومتابعة الغياب المتكرر ضمن برنامج الانضباط.</li>
+  </ol>
+</div>
+</section><section class="domain" id="d5"><header class="dhead"><span class="dnum">6</span>
 <div><p class="dsub">شواهد مساندة</p><h2>التكريمات والوسائط</h2></div><span class="dcount">4 عناصر</span></header>
 <div class="grid">
 <article class="card media honors" data-q="تكريم تكريمات التكريم حفل المعلمين منسوبي المدرسة فيديو مقطع حفل">
