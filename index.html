@@ -98,6 +98,16 @@ main{max-width:1180px;margin:auto;padding:8px 16px 40px}
 .mgrid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
 .mgrid2>*{min-width:0}
 @media (max-width:560px){.mtbl th,.mtbl td{padding:7px 6px;font-size:13px}}
+:root{--seq1:#0d7373;--seq2:#5fa3a3;--seq3:#bcd9d9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--seq1:#45b8b8;--seq2:#2c7d80;--seq3:#22474f}}
+:root[data-theme="dark"]{--seq1:#45b8b8;--seq2:#2c7d80;--seq3:#22474f}
+.lvl{display:grid;gap:10px}
+.lvl .row{display:grid;grid-template-columns:7.5em 1fr;gap:10px;align-items:center;font-size:13.5px}
+.lvl .bar{display:flex;height:26px;border-radius:6px;overflow:hidden;gap:2px;background:var(--surface)}
+.lvl .bar span{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--surface);min-width:0;white-space:nowrap}
+.lvl .bar .b1{background:var(--seq1)} .lvl .bar .b2{background:var(--seq2)} .lvl .bar .b3{background:var(--seq3);color:var(--ink)}
+.lvl h4{margin:6px 0 0;font-size:14px;color:var(--muted);font-weight:500}
+.heat td.h{font-weight:700;text-align:center}
 .viewer{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;grid-template-rows:auto 1fr}
 .vbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 16px;background:var(--navy);border-bottom:3px solid var(--gold);color:#fff}
 .vbar .vt{flex:1;min-width:160px;font-weight:700;font-size:16px;line-height:1.4}
@@ -116,7 +126,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 16px;bor
 <h1>ملفات وسجلات مدرسة العز بن عبدالسلام</h1>
 <p class="sub">متوسطة العز بن عبدالسلام بالعرضيات · العام الدراسي 1448هـ</p>
 <div class="stats"><div class="stat"><b>4</b><span>مجالات</span></div><div class="stat"><b>25</b><span>ملفاً وسجلاً</span></div><div class="stat"><b>1,130</b><span>صفحة</span></div></div><p class="folder"><a href="https://drive.google.com/drive/folders/1N76tDjTgsniIHjdVAJRY7pU931Dh0bcy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> المجلد الكامل على قوقل درايف</a></p></header>
-<div class="bar"><div class="in"><nav><a href="#d1">الإدارة المدرسية</a><a href="#d2">التعليم والتعلم</a><a href="#d3">نواتج التعلم</a><a href="#d4">البيئة المدرسية</a><a href="#d6">منصة مدرستي</a><a href="#d5">التكريمات والوسائط</a></nav><input id="q" type="search" placeholder="ابحث: البادلت، التكريم، الرخصة…" aria-label="بحث"></div></div>
+<div class="bar"><div class="in"><nav><a href="#d1">الإدارة المدرسية</a><a href="#d2">التعليم والتعلم</a><a href="#d3">نواتج التعلم</a><a href="#d4">البيئة المدرسية</a><a href="#d6">منصة مدرستي</a><a href="#d7">نظام نور</a><a href="#d5">التكريمات والوسائط</a></nav><input id="q" type="search" placeholder="ابحث: البادلت، التكريم، الرخصة…" aria-label="بحث"></div></div>
 <main><section class="domain" id="d1"><header class="dhead"><span class="dnum">1</span>
 <div><p class="dsub">المجال الأول</p><h2>الإدارة المدرسية</h2></div><span class="dcount">11 ملفاً</span></header>
 <div class="grid"><article class="card" data-q="ميثاق مهنة التعليم ومدونة السلوك تلتزم المدرسة بأخلاقيات مهنة التعليم وقواعد السلوك الوظيفي، وتعزّزها لدى منسوبيها.">
@@ -331,7 +341,46 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 16px;bor
     <li>مطابقة رصد الغياب على المنصة مع نظام نور شهريًّا، ومتابعة الغياب المتكرر ضمن برنامج الانضباط.</li>
   </ol>
 </div>
-</section><section class="domain" id="d5"><header class="dhead"><span class="dnum">6</span>
+</section><section class="domain" id="d7"><header class="dhead"><span class="dnum">6</span>
+<div><p class="dsub">شواهد رقمية</p><h2>شواهد نظام نور</h2></div><span class="dcount">مستخرجة في 17 أكتوبر 2026</span></header>
+<p class="mnote">أرقام على مستوى المدرسة من تقارير نظام نور: المواظبة والسلوك للفصل الأول 1448هـ، والنتائج والمستوى العام والنجاح النوعي للعام الماضي 1446–1447هـ. لا أسماء طلاب ولا معلمين.</p>
+<div class="kpis">
+<article class="kpi card" data-q="المواظبة الغياب الحضور التأخر الانضباط نظام نور شواهد رقمية">
+  <div class="big">95.2<small>%</small></div><h3>من الطلاب لم يتغيبوا</h3><p class="det">237 طالبًا من 249 لم يتغيبوا أي يوم في الفصل الأول 1448هـ. لا غياب بدون عذر، ولا تأخر، ولا درجات محسومة. كل الغياب المسجل 16 يومًا بعذر.</p>
+  <p class="ind"><span class="code">1-2-1-3</span><span class="code">3-2-1-5</span><b>المؤشر:</b> تطبق المدرسة إجراءات محددة لدعم الانضباط المدرسي، وتتابع الالتزام بها.</p></article>
+<article class="kpi card" data-q="السلوك المخالفات السلوك الإيجابي نظام نور شواهد رقمية">
+  <div class="big">0</div><h3>مخالفات سلوكية</h3><p class="det">لا مخالفة مسجلة على أي طالب. وسُجّل 16 سلوكًا إيجابيًّا لـ13 طالبًا.</p>
+  <p class="ind"><span class="code">1-2-1-4</span><span class="code">3-2-1-5</span><b>المؤشر:</b> تنفذ المدرسة برامج وأنشطة تربوية داعمة للسلوك الإيجابي لدى المتعلمين، وتتابعها.</p></article>
+<article class="kpi card" data-q="النجاح الرسوب النتائج الدورين نظام نور شواهد رقمية">
+  <div class="big">100<small>%</small></div><h3>نسبة النجاح 1446–1447هـ</h3><p class="det">نجح الطلاب كلهم في الدور الأول: 92 في الأول، و88 في الثاني، و89 في الثالث. لا راسب ولا دور ثانٍ.</p>
+  <p class="ind"><span class="code">2-2-1-3</span><span class="code">2-1-1-2</span><b>المؤشر:</b> تحلل المدرسة نتائج التقويم، وتوظفها في تحسين عمليات التعليم والتعلم والتقويم.</p></article>
+<article class="kpi card" data-q="المستوى العام المعدل نظام نور شواهد رقمية">
+  <div class="big">72<small>%</small></div><h3>من الطلاب بمعدل 90% فأعلى</h3><p class="det">في الفصل الثاني 1446–1447هـ: 195 طالبًا من 269. ولا طالب دون 65% في أي صف أو فصل.</p>
+  <p class="ind"><span class="code">2-1-1-2</span><span class="code">2-2-1-3</span><b>المؤشر:</b> تدعم المدرسة تنفيذ المناهج بما يحقق نواتج التعلم المستهدفة.</p></article>
+<article class="kpi card" data-q="الجنسيات التنوع الثقافي غير سعودي نظام نور شواهد رقمية">
+  <div class="big">41</div><h3>طالبًا غير سعودي</h3><p class="det">16.5% من الطلاب من جنسيات متعددة يدرسون مع زملائهم في الفصول نفسها، ومنهم 16 طالبًا من 43 في قوائم أوائل الصفوف لعام 1446–1447هـ.</p>
+  <p class="ind"><span class="code">3-2-1-7</span><span class="code">2-1-1-1</span><b>المؤشر:</b> يظهر المتعلمون اعتزازًا بثقافتهم واحترامًا للتنوع الثقافي في المجتمع.</p></article>
+<article class="kpi card" data-q="أعداد الطلاب الفصول الكثافة نظام نور شواهد رقمية">
+  <div class="big">27.7</div><h3>طالبًا متوسط الفصل</h3><p class="det">249 طالبًا في 9 فصول (الأول 72، الثاني 90، الثالث 87)، وأعداد الفصول بين 22 و31 طالبًا.</p>
+  <p class="ind"><span class="code">4-1-1-2</span><b>المؤشر:</b> تنظيم مبنى المدرسة ملائم لعدد المتعلمين وخصائص المرحلة العمرية.</p></article>
+<article class="kpi card" data-q="الجدول المدرسي النصاب الحصص المعلمين نظام نور شواهد رقمية">
+  <div class="big">12.6</div><h3>حصة متوسط نصاب المعلم</h3><p class="det">25 معلمًا يدرّسون 315 حصة أسبوعيًّا، في 10 تخصصات، دون حصص انتظار في الجدول.</p>
+  <p class="ind"><span class="code">1-1-1-1</span><span class="code">2-1-1-2</span><b>المؤشر:</b> تضع المدرسة خطة تشغيلية شاملة وفق أهداف تطويرية محددة.</p></article>
+</div>
+<div class="mrep">
+  <div class="mbox">
+    <h3>المستوى العام للطلاب – 1446–1447هـ</h3>
+    <p class="sub">توزيع الطلاب حسب المعدل في كل صف. لا طالب دون 65%.</p>
+    <div class="lvl" id="nlevels"></div>
+    <div class="mlegend"><span><i style="background:var(--seq1)"></i>90% إلى 100%</span><span><i style="background:var(--seq2)"></i>80% إلى أقل من 90%</span><span><i style="background:var(--seq3)"></i>65% إلى أقل من 80%</span></div>
+  </div>
+  <div class="mbox">
+    <h3>نسبة التقدير «ممتاز» حسب المادة – الفصل الأول 1446–1447هـ</h3>
+    <p class="sub">كلما اشتد اللون ارتفعت النسبة. أدنى النسب في رياضيات الثالث (18%) والإنجليزية، وهي مرتبطة بأولويات الاختبارات الوطنية.</p>
+    <div class="mtbl"><table class="heat" id="nqual"></table></div>
+  </div>
+</div>
+</section><section class="domain" id="d5"><header class="dhead"><span class="dnum">7</span>
 <div><p class="dsub">شواهد مساندة</p><h2>التكريمات والوسائط</h2></div><span class="dcount">4 عناصر</span></header>
 <div class="grid">
 <article class="card media honors" data-q="تكريم تكريمات التكريم حفل المعلمين منسوبي المدرسة فيديو مقطع حفل">
@@ -470,5 +519,23 @@ document.getElementById('empty').classList.toggle('hidden',any)});
   };
   $("msubjects").innerHTML = rowsOf(D.subjects, "المادة");
   $("mgrades").innerHTML = rowsOf(D.grades, "الصف");
+})();
+
+// Noor analytics (school-level)
+(function(){
+  const D = {"levels": {"الفصل الأول": {"الأول المتوسط": [3, 27, 62], "الثاني المتوسط": [1, 26, 61], "الثالث المتوسط": [0, 21, 68]}, "الفصل الثاني": {"الأول المتوسط": [1, 23, 68], "الثاني المتوسط": [2, 25, 61], "الثالث المتوسط": [0, 23, 66]}}, "qual": [["الرياضيات", 50, 50, 18], ["العلوم", 70, 63, 47], ["اللغة الإنجليزية", 37, 35, 18], ["القرآن الكريم والدراسات الإسلامية", 84, 73, 100], ["الدراسات الاجتماعية", 97, 97, 100], ["المهارات الرقمية", 93, 99, 96], ["التربية البدنية والدفاع عن النفس", 100, 100, 100], ["التربية الفنية", 100, 100, 100], ["المهارات الحياتية والأسرية", 100, 100, 100]]};
+  let h = "";
+  for (const term in D.levels){
+    h += `<h4>${term}</h4>`;
+    for (const g in D.levels[term]){
+      const [c3, c2, c1] = D.levels[term][g], t = c1 + c2 + c3, pc = v => Math.round(v / t * 1000) / 10;
+      const seg = (cls, v, lbl) => v ? `<span class="${cls}" style="flex:${v}" title="${lbl}: ${v} طالبًا (${pc(v)}%)">${pc(v) >= 8 ? pc(v) + "%" : ""}</span>` : "";
+      h += `<div class="row"><span>${g} <small style="color:var(--muted)">(${t})</small></span><div class="bar" role="img" aria-label="${g}: ${pc(c1)}% من 90 فأعلى، ${pc(c2)}% من 80 إلى 90، ${pc(c3)}% من 65 إلى 80">${seg("b1", c1, "90% فأعلى")}${seg("b2", c2, "80% إلى 90%")}${seg("b3", c3, "65% إلى 80%")}</div></div>`;
+    }
+  }
+  document.getElementById("nlevels").innerHTML = h;
+  const cell = v => `<td class="h" style="background:color-mix(in srgb, var(--teal) ${Math.round(v * 0.55)}%, transparent)">${v}%</td>`;
+  document.getElementById("nqual").innerHTML = `<thead><tr><th>المادة</th><th class="n">الأول المتوسط</th><th class="n">الثاني المتوسط</th><th class="n">الثالث المتوسط</th></tr></thead><tbody>` +
+    D.qual.map(([s, a, b, c]) => `<tr><td>${s}</td>${cell(a)}${cell(b)}${cell(c)}</tr>`).join("") + "</tbody>";
 })();
 </script></body></html>
